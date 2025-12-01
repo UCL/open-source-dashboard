@@ -38,18 +38,18 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^24.9.2",
-    "bumpp": "^10.3.1",
-    "eslint": "^9.39.0",
-    "lint-staged": "^16.2.6",
-    "rimraf": "^6.1.0",
+    "@types/node": "^24.10.1",
+    "bumpp": "^10.3.2",
+    "eslint": "^9.39.1",
+    "lint-staged": "^16.2.7",
+    "rimraf": "^6.1.2",
     "typescript": "^5.3.3",
     "unbuild": "^3.6.1",
-    "vite": "^7.1.12",
+    "vite": "^7.2.6",
     "vitest": "^3.2.4"
   },
   "dependencies": {
-    "@octokit/graphql-schema": "^15.26.0",
+    "@octokit/graphql-schema": "^15.26.1",
     "@octokit/plugin-paginate-graphql": "^6.0.0",
     "@octokit/plugin-retry": "^8.0.3",
     "@octokit/plugin-throttling": "^11.0.3",
@@ -58,7 +58,7 @@
     "esno": "^4.8.0",
     "fs-extra": "^11.3.2",
     "octokit": "^5.0.5",
-    "yaml": "^2.3.4",
-    "duckdb-async": "^1.1.0"
+    "yaml": "^2.8.2",
+    "duckdb-async": "^1.4.2"
   }
 }
