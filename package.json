@@ -14,10 +14,10 @@
     "./backend"
   ],
   "devDependencies": {
-    "@dotenvx/dotenvx": "^1.51.0",
+    "@dotenvx/dotenvx": "^1.51.1",
     "@types/styled-components": "^5.1.36",
     "concurrently": "^9.2.1",
-    "prettier": "^3.6.2",
-    "yaml": "^2.6.1"
+    "prettier": "^3.7.4",
+    "yaml": "^2.8.2"
   }
 }
