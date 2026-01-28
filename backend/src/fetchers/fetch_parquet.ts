@@ -6,7 +6,7 @@ import { Config, Result } from '../index';
 import { CustomOctokit } from '../lib/octokit';
 import { queryRepoNames } from './fetcher_utils';
 
-import { Database } from 'duckdb-async';
+import { DuckDBInstance } from '@duckdb/node-api';
 
 async function downloadParquetFile(url: string, outputPath: string) {
     return new Promise((resolve, reject) => {
@@ -74,7 +74,7 @@ export const addCondaData = async (result: Result, octokit: CustomOctokit, confi
         }
     }
 
-    const db = await Database.create( `:memory:` );
+    const db = await DuckDBInstance.create( `:memory:` );
     const formattedString = packages.map((pkg) => `'${pkg}'`).join(',');
 
     const totalDownloads = await db.all(`SELECT pkg_name, SUM(counts)::INTEGER AS total FROM '${baseDir}/*.parquet' WHERE pkg_name IN (${formattedString}) GROUP BY pkg_name`);
