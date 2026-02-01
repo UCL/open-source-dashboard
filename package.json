@@ -19,8 +19,5 @@
     "concurrently": "^9.2.1",
     "prettier": "^3.7.4",
     "yaml": "^2.8.2"
-  },
-  "dependencies": {
-    "@duckdb/node-api": "^1.4.3-r.3"
   }
 }

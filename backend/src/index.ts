@@ -13,7 +13,6 @@ import {
   addRepositoriesToResult,
 } from './fetchers';
 import { CustomOctokit, checkRateLimit, personalOctokit } from './lib/octokit';
-import { addCondaData } from './fetchers/fetch_parquet';
 
 export interface Result {
   meta: {
@@ -133,8 +132,7 @@ for (const orgName of configOrganizationName) {
     addRepositoriesToResult,
     addIssueAndPrData,
     addDiscussionData,
-    addIssueMetricsData,
-    addCondaData
+    addIssueMetricsData
   );
 
   outputResult(result, orgName);
