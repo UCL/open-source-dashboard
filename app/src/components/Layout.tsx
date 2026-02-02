@@ -13,7 +13,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
   const router = useRouter();
   const [showBanner, setShowBanner] = useLocalStorage('show-banner', false);
   const isSSR = useIsSSR();
-  const orgName = 'UCL Open Source Dashboard';
+  const orgName = 'University College London Open Source Dashboard';
 
   return (
     <main className="px-18 py-18 h-full flex flex-col">
