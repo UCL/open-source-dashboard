@@ -87,7 +87,7 @@ jobs:
       - name: Install dependencies
         run: cd "${{ github.workspace }}/app" && ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
-        run: cd "${{ github.workspace }}/app" && ${{ steps.detect-package-manager.outputs.runner }} next build
+        run: cd "${{ github.workspace }}/app" && ${{ steps.detect-package-manager.outputs.runner }} next build --webpack
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
