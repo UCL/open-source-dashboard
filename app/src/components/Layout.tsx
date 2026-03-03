@@ -1,6 +1,7 @@
 import { useLocalStorage } from 'usehooks-ts';
 
-import { Box, Flash, IconButton, TabNav, Text } from '@primer/react';
+import { Flash, IconButton, Text } from '@primer/react';
+import { TabNav } from '@primer/react/deprecated';
 import Image from 'next/image';
 
 import { useIsSSR } from '@/hooks/useIsSSR';
@@ -17,7 +18,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
 
   return (
     <main className="px-18 py-18 h-full flex flex-col">
-      <Box className="flex flex-row items-center gap-6">
+      <div className="flex flex-row items-center gap-6">
         <Image
           className="block h-8 w-auto"
           src={`${basePath}/images/ucl-dark-light-mode-adaptive.svg`}
@@ -28,16 +29,12 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
         <Text as="h1" className="font-semibold text-xl">
           {orgName}
         </Text>
-      </Box>
+      </div>
       {!isSSR && showBanner && (
-        <Box className="mt-6">
+        <div className="mt-6">
           <Flash
             variant="default"
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}
+            className="flex justify-between items-center"
           >
             <Text>
               Open Source Health Metrics for{' '}
@@ -45,17 +42,16 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
               Documentation page to learn more about how these metrics are
               calculated.
             </Text>
-            <Box>
+            <div>
               <IconButton
                 onClick={() => setShowBanner(false)}
                 variant="invisible"
                 icon={XIcon}
                 aria-label="Dismiss"
-                sx={{ svg: { margin: '0', color: 'fg.muted' } }}
               />
-            </Box>
+            </div>
           </Flash>
-        </Box>
+        </div>
       )}
       <TabNav aria-label="Main" className="mt-8">
         <TabNav.Link
@@ -80,7 +76,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
           Documentation
         </TabNav.Link>
       </TabNav>
-      <Box className="flex-1 mt-2">{children}</Box>
+      <div className="flex-1 mt-2">{children}</div>
     </main>
   );
 };

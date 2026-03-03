@@ -1,4 +1,3 @@
-import { Box } from '@primer/react';
 import { marked } from 'marked';
 import Docs from '../../docs/definitions.md';
 
@@ -10,9 +9,9 @@ const Documentation = () => {
   const html = convertMarkdownToHTML(Docs);
 
   return (
-    <Box className="prose dark:prose-invert prose-lg">
-      <Box dangerouslySetInnerHTML={{ __html: html }} />
-    </Box>
+    <div className="prose dark:prose-invert prose-lg">
+      <div dangerouslySetInnerHTML={{ __html: html }} />
+    </div>
   );
 };
 

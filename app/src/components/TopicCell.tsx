@@ -1,4 +1,4 @@
-import { Box, Label } from '@primer/react';
+import { Label } from '@primer/react';
 import { useState } from 'react';
 import { Popover } from 'react-tiny-popover';
 
@@ -17,13 +17,13 @@ const TopicCell = ({
       isOpen={isOpen}
       content={() => {
         return (
-          <Box
+          <div
             className="shadow-xl min-w-64 p-4 rounded space-x-2"
             onClick={(e: { stopPropagation: () => any }) => e.stopPropagation()}
-            sx={{
-              backgroundColor: 'Background',
+            style={{
+              backgroundColor: 'var(--bgColor-default)',
               border: '1px solid',
-              borderColor: 'border.default',
+              borderColor: 'var(--borderColor-default)',
             }}
           >
             {topics.sort().map((topic) => (
@@ -31,7 +31,7 @@ const TopicCell = ({
                 {topic}
               </Label>
             ))}
-          </Box>
+          </div>
         );
       }}
     >
@@ -42,7 +42,7 @@ const TopicCell = ({
         className="space-x-1 m-1"
       >
         {topics.sort().map((topic) => (
-          <Label sx={{ backgroundColor: 'Background' }} key={topic}>
+          <Label style={{ backgroundColor: 'var(--bgColor-default)' }} key={topic}>
             {topic}
           </Label>
         ))}
