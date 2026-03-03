@@ -1,1 +1,1 @@
-export const basePath = '';
+export const basePath = '/open-source-dashboard';
