@@ -935,7 +935,7 @@ const RepositoriesTable = ({ orgName }: RepositoryTableProps) => {
         <div className="flex flex-row items-center justify-between">
           <div className="flex flex-row space-x-4 justify-start items-center">
             <div className="flex flex-row items-center space-x-1">
-              <button text="All of the repositories in this organization">
+              <button aria-label="All of the repositories in this organization">
                 <InfoIcon size={24} />
               </button>
               <Text as="p" className="text-sm">
