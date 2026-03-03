@@ -1,7 +1,6 @@
 import { useLocalStorage } from 'usehooks-ts';
 
-import { Flash, IconButton, Text } from '@primer/react';
-import { TabNav } from '@primer/react/deprecated';
+import { Flash, IconButton, Text, UnderlineNav } from '@primer/react';
 import Image from 'next/image';
 
 import { useIsSSR } from '@/hooks/useIsSSR';
@@ -53,29 +52,35 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
           </Flash>
         </div>
       )}
-      <TabNav aria-label="Main" className="mt-8">
-        <TabNav.Link
+      <UnderlineNav aria-label="Main" className="mt-8">
+        <UnderlineNav.Item
           href={`${basePath}/`}
-          selected={
+          aria-current={
             !router.pathname.includes('documentation') &&
             !router.pathname.includes('ucl-arc')
+              ? 'page'
+              : undefined
           }
         >
           @UCL Repositories
-        </TabNav.Link>
-        <TabNav.Link
+        </UnderlineNav.Item>
+        <UnderlineNav.Item
           href={`${basePath}/ucl-arc`}
-          selected={router.pathname.includes('ucl-arc')}
+          aria-current={
+            router.pathname.includes('ucl-arc') ? 'page' : undefined
+          }
         >
           @UCL-ARC Repositories
-        </TabNav.Link>
-        <TabNav.Link
+        </UnderlineNav.Item>
+        <UnderlineNav.Item
           href={`${basePath}/documentation`}
-          selected={router.pathname.includes('documentation')}
+          aria-current={
+            router.pathname.includes('documentation') ? 'page' : undefined
+          }
         >
           Documentation
-        </TabNav.Link>
-      </TabNav>
+        </UnderlineNav.Item>
+      </UnderlineNav>
       <div className="flex-1 mt-2">{children}</div>
     </main>
   );

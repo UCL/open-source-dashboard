@@ -13,6 +13,7 @@ import {
   FormControl,
   Text,
   TextInput,
+  Tooltip,
 } from '@primer/react';
 import { json2csv } from 'json-2-csv';
 import { DataGrid, type Column, type RenderHeaderCellProps, type SortColumn } from 'react-data-grid';
@@ -152,7 +153,9 @@ const HeaderCellRenderer = <R = unknown,>({
           onClickOutside={() => setIsPopoverOpen(false)}
           ref={clickMeButtonRef} // if you'd like a ref to your popover's child, you can grab one here
           content={() => (
-            // The click handler here is used to stop the header from being sorted
+            // The click handler here is used to stop the header from being sorted.
+            // CSS variables (var(--bgColor-default) etc.) are Primer design tokens
+            // exposed as custom properties by @primer/react v38's BaseStyles.
             <div
               className="shadow-xl min-w-64 p-4 rounded"
               onClick={(e: { stopPropagation: () => any; }) => e.stopPropagation()}
@@ -926,9 +929,9 @@ const RepositoriesTable = ({ orgName }: RepositoryTableProps) => {
         <div className="flex flex-row items-center justify-between">
           <div className="flex flex-row space-x-4 justify-start items-center">
             <div className="flex flex-row items-center space-x-1">
-              <button text="All of the repositories in this organization" type="label">
+              <Tooltip text="All of the repositories in this organization" type="label">
                 <InfoIcon size={24} />
-              </button>
+              </Tooltip>
               <Text as="p" className="text-sm">
                 {subTitle}
               </Text>

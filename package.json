@@ -22,9 +22,5 @@
     "concurrently": "^9.2.1",
     "prettier": "^3.8.1",
     "yaml": "^2.8.2"
-  },
-  "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
   }
 }
