@@ -13,7 +13,6 @@ import {
   FormControl,
   Text,
   TextInput,
-  Tooltip,
 } from '@primer/react';
 import { json2csv } from 'json-2-csv';
 import { DataGrid, type Column, type RenderHeaderCellProps, type SortColumn } from 'react-data-grid';
@@ -927,9 +926,9 @@ const RepositoriesTable = ({ orgName }: RepositoryTableProps) => {
         <div className="flex flex-row items-center justify-between">
           <div className="flex flex-row space-x-4 justify-start items-center">
             <div className="flex flex-row items-center space-x-1">
-              <Tooltip text="All of the repositories in this organization" type="label">
+              <button text="All of the repositories in this organization" type="label">
                 <InfoIcon size={24} />
-              </Tooltip>
+              </button>
               <Text as="p" className="text-sm">
                 {subTitle}
               </Text>
