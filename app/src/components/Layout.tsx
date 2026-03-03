@@ -1,6 +1,6 @@
 import { useLocalStorage } from 'usehooks-ts';
 
-import { Box, Flash, IconButton, TabNav, Text } from '@primer/react';
+import { Flash, IconButton, Text, UnderlineNav } from '@primer/react';
 import Image from 'next/image';
 
 import { useIsSSR } from '@/hooks/useIsSSR';
@@ -17,7 +17,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
 
   return (
     <main className="px-18 py-18 h-full flex flex-col">
-      <Box className="flex flex-row items-center gap-6">
+      <div className="flex flex-row items-center gap-6">
         <Image
           className="block h-8 w-auto"
           src={`${basePath}/images/ucl-dark-light-mode-adaptive.svg`}
@@ -28,16 +28,12 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
         <Text as="h1" className="font-semibold text-xl">
           {orgName}
         </Text>
-      </Box>
+      </div>
       {!isSSR && showBanner && (
-        <Box className="mt-6">
+        <div className="mt-6">
           <Flash
             variant="default"
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}
+            className="flex justify-between items-center"
           >
             <Text>
               Open Source Health Metrics for{' '}
@@ -45,42 +41,47 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
               Documentation page to learn more about how these metrics are
               calculated.
             </Text>
-            <Box>
+            <div>
               <IconButton
                 onClick={() => setShowBanner(false)}
                 variant="invisible"
                 icon={XIcon}
                 aria-label="Dismiss"
-                sx={{ svg: { margin: '0', color: 'fg.muted' } }}
               />
-            </Box>
+            </div>
           </Flash>
-        </Box>
+        </div>
       )}
-      <TabNav aria-label="Main" className="mt-8">
-        <TabNav.Link
+      <UnderlineNav aria-label="Main" className="mt-8">
+        <UnderlineNav.Item
           href={`${basePath}/`}
-          selected={
+          aria-current={
             !router.pathname.includes('documentation') &&
             !router.pathname.includes('ucl-arc')
+              ? 'page'
+              : undefined
           }
         >
           @UCL Repositories
-        </TabNav.Link>
-        <TabNav.Link
+        </UnderlineNav.Item>
+        <UnderlineNav.Item
           href={`${basePath}/ucl-arc`}
-          selected={router.pathname.includes('ucl-arc')}
+          aria-current={
+            router.pathname.includes('ucl-arc') ? 'page' : undefined
+          }
         >
           @UCL-ARC Repositories
-        </TabNav.Link>
-        <TabNav.Link
+        </UnderlineNav.Item>
+        <UnderlineNav.Item
           href={`${basePath}/documentation`}
-          selected={router.pathname.includes('documentation')}
+          aria-current={
+            router.pathname.includes('documentation') ? 'page' : undefined
+          }
         >
           Documentation
-        </TabNav.Link>
-      </TabNav>
-      <Box className="flex-1 mt-2">{children}</Box>
+        </UnderlineNav.Item>
+      </UnderlineNav>
+      <div className="flex-1 mt-2">{children}</div>
     </main>
   );
 };

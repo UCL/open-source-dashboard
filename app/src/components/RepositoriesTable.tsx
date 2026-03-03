@@ -8,17 +8,16 @@ import {
 
 import {
   ActionList,
-  Box,
   Button,
   Checkbox,
   FormControl,
   Text,
   TextInput,
-  Tooltip,
 } from '@primer/react';
 import { json2csv } from 'json-2-csv';
-import DataGrid, {
-  Column,
+import {
+  DataGrid,
+  type Column,
   type RenderHeaderCellProps,
   type SortColumn,
 } from 'react-data-grid';
@@ -158,21 +157,25 @@ const HeaderCellRenderer = <R = unknown,>({
           onClickOutside={() => setIsPopoverOpen(false)}
           ref={clickMeButtonRef} // if you'd like a ref to your popover's child, you can grab one here
           content={() => (
-            // The click handler here is used to stop the header from being sorted
-            <Box
+            // The click handler here is used to stop the header from being sorted.
+            // CSS variables (var(--bgColor-default) etc.) are Primer design tokens
+            // exposed as custom properties by @primer/react v38's BaseStyles.
+            <div
               className="shadow-xl min-w-64 p-4 rounded"
-              onClick={(e: { stopPropagation: () => any; }) => e.stopPropagation()}
-              sx={{
-                backgroundColor: 'Background',
+              onClick={(e) =>
+                e.stopPropagation()
+              }
+              style={{
+                backgroundColor: 'var(--bgColor-default)',
                 border: '1px solid',
-                borderColor: 'border.default',
+                borderColor: 'var(--borderColor-default)',
               }}
             >
               <FormControl>
                 <FormControl.Label>Filter by {column.name}</FormControl.Label>
                 {filterFunction({ tabIndex, filters })}
               </FormControl>
-            </Box>
+            </div>
           )}
         >
           <Button
@@ -202,7 +205,7 @@ const MinMaxRenderer: FC<{
   return (
     <HeaderCellRenderer<RepositoryResult> {...headerCellProps}>
       {({ ...rest }) => (
-        <Box className="w-full">
+        <div className="w-full">
           <FormControl>
             <FormControl.Label htmlFor={`${filterName}Min`}>
               Min
@@ -248,7 +251,7 @@ const MinMaxRenderer: FC<{
               onClick={(e) => e.stopPropagation()}
             />
           </FormControl>
-        </Box>
+        </div>
       )}
     </HeaderCellRenderer>
   );
@@ -269,7 +272,7 @@ const SearchableSelectRenderer: FC<{
   return (
     <HeaderCellRenderer<RepositoryResult> {...headerCellProps}>
       {({ ...rest }) => (
-        <Box>
+        <div>
           <TextInput
             {...rest}
             className="w-full"
@@ -282,11 +285,10 @@ const SearchableSelectRenderer: FC<{
                 }}
                 icon={XIcon}
                 aria-label="Clear input"
-                sx={{ color: 'fg.subtle' }}
               />
             }
           />
-          <Box className="h-80 overflow-auto w-100 mt-2">
+          <div className="h-80 overflow-auto w-100 mt-2">
             <ActionList>
               <ActionList.Item
                 onClick={() => {
@@ -310,7 +312,7 @@ const SearchableSelectRenderer: FC<{
                     )}
                   />
                 </ActionList.LeadingVisual>
-                <Box>All</Box>
+                <div>All</div>
               </ActionList.Item>
               {allSelectOptions.map((selectOption) => {
                 if (selectOption.value === '') {
@@ -341,7 +343,7 @@ const SearchableSelectRenderer: FC<{
                             }
                           />
                         </ActionList.LeadingVisual>
-                        <Box>No License</Box>
+                        <div>No License</div>
                       </ActionList.Item>
                     </>
                   );
@@ -374,14 +376,14 @@ const SearchableSelectRenderer: FC<{
                           )}
                         />
                       </ActionList.LeadingVisual>
-                      <Box>{selectOption.value}</Box>
+                      <div>{selectOption.value}</div>
                     </ActionList.Item>
                   </>
                 );
               })}
             </ActionList>
-          </Box>
-        </Box>
+          </div>
+        </div>
       )}
     </HeaderCellRenderer>
   );
@@ -928,18 +930,18 @@ const RepositoriesTable = ({ orgName }: RepositoryTableProps) => {
   const createdDate = new Date(repoData.meta.createdAt);
 
   return (
-    <Box className="h-full flex flex-col">
-      <Box className="py-2">
-        <Box className="flex flex-row items-center justify-between">
-          <Box className="flex flex-row space-x-4 justify-start items-center">
-            <Box className="flex flex-row items-center space-x-1">
-              <Tooltip aria-label="All of the repositories in this organization">
+    <div className="h-full flex flex-col">
+      <div className="py-2">
+        <div className="flex flex-row items-center justify-between">
+          <div className="flex flex-row space-x-4 justify-start items-center">
+            <div className="flex flex-row items-center space-x-1">
+              <button aria-label="All of the repositories in this organization">
                 <InfoIcon size={24} />
-              </Tooltip>
+              </button>
               <Text as="p" className="text-sm">
                 {subTitle}
               </Text>
-            </Box>
+            </div>
             <Text as="p" className="text-sm">
               Last updated{' '}
               <Text suppressHydrationWarning>
@@ -950,8 +952,8 @@ const RepositoriesTable = ({ orgName }: RepositoryTableProps) => {
                 {createdDate.toLocaleTimeString()}
               </Text>
             </Text>
-          </Box>
-          <Box className="flex flex-row items-center space-x-2">
+          </div>
+          <div className="flex flex-row items-center space-x-2">
             <Button
               variant="invisible"
               onClick={() => {
@@ -969,12 +971,12 @@ const RepositoriesTable = ({ orgName }: RepositoryTableProps) => {
             >
               Download CSV
             </Button>
-          </Box>
-        </Box>
-      </Box>
+          </div>
+        </div>
+      </div>
       <FilterContext.Provider value={globalFilters}>
         {/* This is a weird hack to make the table fill the page */}
-        <Box className="h-64 flex-grow">
+        <div className="h-64 flex-grow">
           <DataGrid
             columns={dataGridColumns}
             rows={displayRows}
@@ -992,9 +994,9 @@ const RepositoriesTable = ({ orgName }: RepositoryTableProps) => {
                 : 'hover:bg-slate-200 dark:hover:bg-slate-600'
             }
           />
-        </Box>
+        </div>
       </FilterContext.Provider>
-    </Box>
+    </div>
   );
 };
 

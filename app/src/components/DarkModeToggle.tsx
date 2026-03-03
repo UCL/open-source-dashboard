@@ -16,7 +16,7 @@ const DarkModeToggle = () => {
   };
   return (
     <>
-      <Text id="toggle" sx={{ fontWeight: 'bold', fontSize: 1 }}>
+      <Text id="toggle" className="font-bold text-xs">
         Toggle Mode
       </Text>
       <ToggleSwitch

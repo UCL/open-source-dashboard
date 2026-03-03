@@ -15,14 +15,12 @@ const productionBasePath = config.basePath ?? '';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  compiler: {
-    styledComponents: true,
-  },
   reactStrictMode: true,
   productionBrowserSourceMaps: true,
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx', 'json'],
   basePath: process.env.NODE_ENV === 'development' ? '' : productionBasePath,
   output: 'export',
+  transpilePackages: ['@primer/react'],
   webpack: (config) => {
     config.module.rules.push({
       test: /\.md$/,
