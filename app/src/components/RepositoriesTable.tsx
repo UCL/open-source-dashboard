@@ -162,7 +162,7 @@ const HeaderCellRenderer = <R = unknown,>({
             // exposed as custom properties by @primer/react v38's BaseStyles.
             <div
               className="shadow-xl min-w-64 p-4 rounded"
-              onClick={(e: { stopPropagation: () => any }) =>
+              onClick={(e) =>
                 e.stopPropagation()
               }
               style={{
