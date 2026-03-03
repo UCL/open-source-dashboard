@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "NODE_ENV=development node scripts/generate-basepath.js && next dev",
-    "build": "next build",
+    "dev": "NODE_ENV=development node scripts/generate-basepath.js && next dev --webpack ",
+    "build": "next --webpack build",
     "start": "next start",
     "lint": "next lint",
     "prepare": "node scripts/generate-basepath.js"
