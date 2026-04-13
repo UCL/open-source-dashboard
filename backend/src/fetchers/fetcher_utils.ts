@@ -3,6 +3,9 @@ import { Config } from '../index';
 import { Organization, Repository } from '@octokit/graphql-schema';
 import excludedRepos from '../../excluded_repos.json';
 
+/**
+ * Maps items with a fixed-size worker pool and preserves result order.
+ */
 export const mapWithConcurrency = async <T, R>(
   items: T[],
   concurrency: number,
