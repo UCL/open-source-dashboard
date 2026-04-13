@@ -11,6 +11,9 @@ export const mapWithConcurrency = async <T, R>(
   concurrency: number,
   mapper: (item: T) => Promise<R>,
 ): Promise<R[]> => {
+  if (!Number.isInteger(concurrency) || concurrency < 1) {
+    throw new Error('concurrency must be an integer greater than or equal to 1');
+  }
   const results: R[] = new Array(items.length);
   let nextIndex = 0;
 
