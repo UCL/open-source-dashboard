@@ -7,10 +7,10 @@ import excludedRepos from '../../excluded_repos.json';
 import { mapWithConcurrency } from './fetcher_utils';
 
 const CONTRIBUTORS_CONCURRENCY = 6;
-const CONTRIBUTORS_RETRY_DELAY_MS = 15_000;
 // GitHub's stats/contributors endpoint often returns 202 for several minutes
 // while repository statistics are being generated, so allow a longer retry window.
-const CONTRIBUTORS_MAX_RETRIES = 12;
+const CONTRIBUTORS_RETRY_DELAY_MS = 30_000;
+const CONTRIBUTORS_MAX_RETRIES = 4;
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
