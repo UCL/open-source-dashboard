@@ -3,6 +3,35 @@ import { Config } from '../index';
 import { Organization, Repository } from '@octokit/graphql-schema';
 import excludedRepos from '../../excluded_repos.json';
 
+/**
+ * Maps items with a fixed-size worker pool and preserves result order.
+ */
+export const mapWithConcurrency = async <T, R>(
+  items: T[],
+  concurrency: number,
+  mapper: (item: T) => Promise<R>,
+): Promise<R[]> => {
+  if (!Number.isInteger(concurrency) || concurrency < 1) {
+    throw new Error('concurrency must be an integer greater than or equal to 1');
+  }
+  const results: R[] = new Array(items.length);
+  let nextIndex = 0;
+
+  const worker = async () => {
+    while (nextIndex < items.length) {
+      const currentIndex = nextIndex;
+      nextIndex += 1;
+      results[currentIndex] = await mapper(items[currentIndex]);
+    }
+  };
+
+  await Promise.all(
+    Array.from({ length: Math.min(concurrency, items.length) }, () => worker()),
+  );
+
+  return results;
+};
+
 export const queryRepoNames = async (octokit: CustomOctokit, config: Config) => {
   const organization = await octokit.graphql.paginate<{
     organization: Organization;
