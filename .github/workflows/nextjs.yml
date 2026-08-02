@@ -90,7 +90,7 @@ jobs:
       - name: Build with Next.js
         run: cd "${{ github.workspace }}/app" && ${{ steps.detect-package-manager.outputs.runner }} next build --webpack
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           path: '${{ github.workspace }}/app/out'
   # Deployment job
