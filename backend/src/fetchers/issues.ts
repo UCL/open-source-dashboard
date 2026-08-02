@@ -10,6 +10,9 @@ import {
 import { Config, Fetcher } from '..';
 import { CustomOctokit } from '../lib/octokit';
 import excludedRepos from '../../excluded_repos.json';
+import { mapWithConcurrency } from './fetcher_utils';
+
+const ISSUE_METRICS_CONCURRENCY = 4;
 
 const getIssueAndPrData = async (octokit: CustomOctokit, config: Config) => {
   const issueData = await octokit.graphql.paginate<{
@@ -250,28 +253,39 @@ const calculateIssueResponseTime = async (
 };
 
 export const addIssueMetricsData: Fetcher = async (result, octokit, config) => {
-  for (const repoName of Object.keys(result.repositories)) {
-    const {
-      issuesAverageAge: openIssuesAverageAge,
-      issuesMedianAge: openIssuesMedianAge,
-    } = await calculateIssueMetricsPerRepo(repoName, 'open', octokit, config);
+  const repositoryNames = Object.keys(result.repositories);
 
-    const {
-      issuesAverageAge: closedIssuesAverageAge,
-      issuesMedianAge: closedIssuesMedianAge,
-    } = await calculateIssueMetricsPerRepo(repoName, 'closed', octokit, config);
+  await mapWithConcurrency(repositoryNames, ISSUE_METRICS_CONCURRENCY, async (repoName) => {
+    try {
+      const {
+        issuesAverageAge: openIssuesAverageAge,
+        issuesMedianAge: openIssuesMedianAge,
+      } = await calculateIssueMetricsPerRepo(repoName, 'open', octokit, config);
 
-    const { issuesResponseAverageAge, issuesResponseMedianAge } =
-      await calculateIssueResponseTime(repoName, octokit, config);
+      const {
+        issuesAverageAge: closedIssuesAverageAge,
+        issuesMedianAge: closedIssuesMedianAge,
+      } = await calculateIssueMetricsPerRepo(
+        repoName,
+        'closed',
+        octokit,
+        config,
+      );
 
-    const repo = result.repositories[repoName];
-    repo.openIssuesAverageAge = openIssuesAverageAge;
-    repo.openIssuesMedianAge = openIssuesMedianAge;
-    repo.closedIssuesAverageAge = closedIssuesAverageAge;
-    repo.closedIssuesMedianAge = closedIssuesMedianAge;
-    repo.issuesResponseAverageAge = issuesResponseAverageAge;
-    repo.issuesResponseMedianAge = issuesResponseMedianAge;
-  }
+      const { issuesResponseAverageAge, issuesResponseMedianAge } =
+        await calculateIssueResponseTime(repoName, octokit, config);
+
+      const repo = result.repositories[repoName];
+      repo.openIssuesAverageAge = openIssuesAverageAge;
+      repo.openIssuesMedianAge = openIssuesMedianAge;
+      repo.closedIssuesAverageAge = closedIssuesAverageAge;
+      repo.closedIssuesMedianAge = closedIssuesMedianAge;
+      repo.issuesResponseAverageAge = issuesResponseAverageAge;
+      repo.issuesResponseMedianAge = issuesResponseMedianAge;
+    } catch (error) {
+      console.error(`Failed to collect issue metrics for ${repoName}`, error);
+    }
+  });
 
   return result;
 };
