@@ -34,9 +34,11 @@ import {
   useRef,
   useState,
 } from 'react';
+import { useTheme } from 'next-themes';
 
 import { RepositoryResult } from '../../../types';
 import TopicCell from './TopicCell';
+import { useIsSSR } from '@/hooks/useIsSSR';
 
 interface RepositoryTableProps {
   orgName: string;
@@ -162,9 +164,7 @@ const HeaderCellRenderer = <R = unknown,>({
             // exposed as custom properties by @primer/react v38's BaseStyles.
             <div
               className="shadow-xl min-w-64 p-4 rounded"
-              onClick={(e) =>
-                e.stopPropagation()
-              }
+              onClick={(e) => e.stopPropagation()}
               style={{
                 backgroundColor: 'var(--bgColor-default)',
                 border: '1px solid',
@@ -470,6 +470,10 @@ const RepositoriesTable = ({ orgName }: RepositoryTableProps) => {
   // eslint-disable-next-line import/no-dynamic-require
   const repoData = require(`../data/${dataFileName}`);
   const repos: RepositoryResult[] = Object.values(repoData['repositories']);
+
+  const { theme } = useTheme();
+  const isSSR = useIsSSR();
+  const isDark = !isSSR && theme === 'dark';
 
   const [globalFilters, setGlobalFilters] = useState<Filter>(defaultFilters);
 
@@ -978,6 +982,7 @@ const RepositoriesTable = ({ orgName }: RepositoryTableProps) => {
         {/* This is a weird hack to make the table fill the page */}
         <div className="h-64 flex-grow">
           <DataGrid
+            className={isDark ? 'rdg-dark' : 'rdg-light'}
             columns={dataGridColumns}
             rows={displayRows}
             rowKeyGetter={(repo) => repo.repositoryName}
