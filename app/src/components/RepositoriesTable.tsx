@@ -781,7 +781,10 @@ const RepositoriesTable = ({ orgName }: RepositoryTableProps) => {
 
   const subTitle = `${repos.length} total repositories`;
 
-  const [sortColumns, setSortColumns] = useState<SortColumn[]>([]);
+  // Default, sorting by most stars
+  const [sortColumns, setSortColumns] = useState<SortColumn[]>([
+    { columnKey: 'starsCount', direction: 'DESC' },
+  ]);
 
   const sortRepos = (inputRepos: RepositoryResult[]) => {
     if (sortColumns.length === 0) {
