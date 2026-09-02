@@ -1,26 +1,23 @@
-import { Text, ToggleSwitch, useTheme as primerUseTheme } from '@primer/react';
+import { Text, ToggleSwitch } from '@primer/react';
 import { useTheme } from 'next-themes';
 
 const DarkModeToggle = () => {
-  const { theme, setTheme } = useTheme();
-  const { setColorMode } = primerUseTheme();
+  const { resolvedTheme, setTheme } = useTheme();
 
   const setThemePage = () => {
-    if (theme === 'dark') {
+    if (resolvedTheme === 'dark') {
       setTheme('light');
-      setColorMode('light');
     } else {
       setTheme('dark');
-      setColorMode('dark');
     }
   };
   return (
     <>
-      <Text id="toggle" className="font-bold text-xs">
-        Toggle Mode
+      <Text id="toggle" className="sr-only">
+        Toggle dark mode
       </Text>
       <ToggleSwitch
-        checked={theme === 'dark'}
+        checked={resolvedTheme === 'dark'}
         aria-labelledby="toggle"
         onClick={() => setThemePage()}
       />

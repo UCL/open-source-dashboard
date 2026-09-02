@@ -8,6 +8,7 @@ import { XIcon } from '@primer/octicons-react';
 import { useRouter } from 'next/router';
 import { FC, PropsWithChildren } from 'react';
 import { basePath } from '../../generated/basePath';
+import DarkModeToggle from './DarkModeToggle';
 
 export const Layout: FC<PropsWithChildren> = ({ children }) => {
   const router = useRouter();
@@ -17,17 +18,20 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
 
   return (
     <main className="px-18 py-18 h-full flex flex-col">
-      <div className="flex flex-row items-center gap-6">
-        <Image
-          className="block h-8 w-auto"
-          src={`${basePath}/images/ucl-dark-light-mode-adaptive.svg`}
-          height={50}
-          width={150}
-          alt="UCL logo"
-        />
-        <Text as="h1" className="font-semibold text-xl">
-          {orgName}
-        </Text>
+      <div className="flex flex-row items-center justify-between">
+        <div className="flex flex-row items-center gap-6">
+          <Image
+            className="block h-8 w-auto dark:invert"
+            src={`${basePath}/images/ucl-dark-light-mode-adaptive.svg`}
+            height={50}
+            width={150}
+            alt="UCL logo"
+          />
+          <Text as="h1" className="font-semibold text-xl">
+            {orgName}
+          </Text>
+        </div>
+        <DarkModeToggle />
       </div>
       {!isSSR && showBanner && (
         <div className="mt-6">
