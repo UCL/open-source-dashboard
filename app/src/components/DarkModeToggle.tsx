@@ -5,10 +5,10 @@ const DarkModeToggle = () => {
   const { resolvedTheme, setTheme } = useTheme();
 
   const setThemePage = () => {
-    if (resolvedTheme === 'dark') {
-      setTheme('light');
-    } else {
+    if (resolvedTheme === 'light') {
       setTheme('dark');
+    } else {
+      setTheme('light');
     }
   };
   return (
@@ -17,9 +17,12 @@ const DarkModeToggle = () => {
         Toggle dark mode
       </Text>
       <ToggleSwitch
-        checked={resolvedTheme === 'dark'}
+        checked={resolvedTheme === 'light'}
         aria-labelledby="toggle"
         onClick={() => setThemePage()}
+        size="small"
+        buttonLabelOn="☾"
+        buttonLabelOff="☀"
       />
     </>
   );
