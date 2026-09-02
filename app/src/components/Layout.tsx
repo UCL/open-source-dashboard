@@ -22,7 +22,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
         <div className="flex flex-row items-center gap-6">
           <Image
             className="block h-8 w-auto dark:invert"
-            src={`${basePath}/images/ucl-dark-light-mode-adaptive.svg`}
+            src={`${basePath}/images/ucl-logo-black.svg`}
             height={50}
             width={150}
             alt="UCL logo"
