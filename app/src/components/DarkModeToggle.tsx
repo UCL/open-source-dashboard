@@ -21,8 +21,8 @@ const DarkModeToggle = () => {
         aria-labelledby="toggle"
         onClick={() => setThemePage()}
         size="small"
-        buttonLabelOn="☾"
-        buttonLabelOff="☼"
+        buttonLabelOn="☼"
+        buttonLabelOff="☾"
       />
     </>
   );
