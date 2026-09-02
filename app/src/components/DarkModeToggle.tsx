@@ -14,7 +14,7 @@ const DarkModeToggle = () => {
   return (
     <>
       <Text id="toggle" className="sr-only">
-        Toggle dark mode
+        Toggle light/dark mode
       </Text>
       <ToggleSwitch
         checked={resolvedTheme === 'light'}
@@ -22,7 +22,7 @@ const DarkModeToggle = () => {
         onClick={() => setThemePage()}
         size="small"
         buttonLabelOn="☾"
-        buttonLabelOff="☀"
+        buttonLabelOff="☼"
       />
     </>
   );
