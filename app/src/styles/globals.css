@@ -5,10 +5,10 @@
 /* add here - see https://github.com/adazzle/react-data-grid/issues/3460#issuecomment-2016837753 */
 @import 'react-data-grid/lib/styles.css';
 
-html.dark [data-component='ThemeProvider'] {
-	--fgColor-default: #f0f6fc;
-	--fgColor-muted: #8b949e;
-	--fgColor-emphasis: #f0f6fc;
-	--color-fg-default: #f0f6fc;
-	--color-fg-muted: #8b949e;
+html.dark {
+  --fgColor-default: #f0f6fc;
+  --fgColor-muted: #8b949e;
+  --fgColor-emphasis: #f0f6fc;
+  --color-fg-default: #f0f6fc;
+  --color-fg-muted: #8b949e;
 }
