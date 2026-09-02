@@ -8,10 +8,10 @@ const DarkModeToggle = () => {
   const setThemePage = () => {
     if (theme === 'dark') {
       setTheme('light');
-      setColorMode('light');
+      setColorMode('day');
     } else {
       setTheme('dark');
-      setColorMode('dark');
+      setColorMode('night');
     }
   };
   return (
