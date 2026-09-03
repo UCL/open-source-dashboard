@@ -4,10 +4,12 @@ import '../styles/globals.css';
 import { PropsWithChildren } from 'react';
 import { BaseStyles } from '@primer/react';
 import { ThemeProvider as PrimerThemeProvider } from '@primer/react/next';
+import { useIsSSR } from '@/hooks/useIsSSR';
 
 function AppThemeProvider({ children }: PropsWithChildren) {
   const { resolvedTheme } = useTheme();
-  const colorMode = resolvedTheme === 'dark' ? 'night' : 'day';
+  const isSSR = useIsSSR();
+  const colorMode = !isSSR && resolvedTheme === 'dark' ? 'night' : 'day';
 
   return (
     <PrimerThemeProvider colorMode={colorMode}>
