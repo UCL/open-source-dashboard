@@ -20,7 +20,7 @@ const DarkModeToggle = () => {
       </Text>
       <ToggleSwitch
         checked={!isSSR && resolvedTheme === 'light'}
-        aria-labelledby="light mode switch"
+        aria-labelledby="toggle"
         onClick={() => setThemePage()}
         size="small"
         buttonLabelOn="☼"
