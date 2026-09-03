@@ -13,7 +13,7 @@ html.dark {
 	color-scheme: dark;
 }
 
-html.dark [data-component='ThemeProvider'] {
+html.dark [data-component='ThemeProvider'][data-color-mode='dark'] {
 	--fgColor-default: #f0f6fc;
 	--fgColor-muted: #8b949e;
 	--fgColor-emphasis: #f0f6fc;
