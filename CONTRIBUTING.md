@@ -36,6 +36,12 @@ Here are a few things you can do that will increase the likelihood of your pull 
 - Keep your change as focused as possible. If there are multiple changes you would like to make that are not dependent upon each other, consider submitting them as separate pull requests.
 - Write a [good commit message](https://www.freecodecamp.org/news/how-to-write-better-git-commit-messages/).
 
+## AI policy
+
+We follow the Centre for Advanced Research Computing's [AI-assisted software engineering policy](https://github.com/UCL-ARC/arc-internal-documentation/pull/203) (internal draft link only for now... sorry!)
+The gist of the policy is: AI-assisted, or agentic coding is allowed if it's sufficiently tested and reviewed by competent humans to minimise comprehension debt.
+ARC engineers are encouraged (but not mandated) to use AI carefully.
+
 ## Resources
 
 - [How to Contribute to Open Source](https://opensource.guide/how-to-contribute/)
