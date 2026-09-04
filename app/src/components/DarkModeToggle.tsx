@@ -1,28 +1,30 @@
-import { Text, ToggleSwitch, useTheme as primerUseTheme } from '@primer/react';
+import { Text, ToggleSwitch } from '@primer/react';
 import { useTheme } from 'next-themes';
+import { useIsSSR } from '@/hooks/useIsSSR';
 
 const DarkModeToggle = () => {
-  const { theme, setTheme } = useTheme();
-  const { setColorMode } = primerUseTheme();
+  const { resolvedTheme, setTheme } = useTheme();
+  const isSSR = useIsSSR();
 
   const setThemePage = () => {
-    if (theme === 'dark') {
-      setTheme('light');
-      setColorMode('light');
-    } else {
+    if (resolvedTheme === 'light') {
       setTheme('dark');
-      setColorMode('dark');
+    } else {
+      setTheme('light');
     }
   };
   return (
     <>
-      <Text id="toggle" className="font-bold text-xs">
-        Toggle Mode
+      <Text id="toggle" className="sr-only">
+        Light mode switch
       </Text>
       <ToggleSwitch
-        checked={theme === 'dark'}
+        checked={!isSSR && resolvedTheme === 'light'}
         aria-labelledby="toggle"
         onClick={() => setThemePage()}
+        size="small"
+        buttonLabelOn="☼"
+        buttonLabelOff="☾"
       />
     </>
   );

@@ -471,9 +471,9 @@ const RepositoriesTable = ({ orgName }: RepositoryTableProps) => {
   const repoData = require(`../data/${dataFileName}`);
   const repos: RepositoryResult[] = Object.values(repoData['repositories']);
 
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const isSSR = useIsSSR();
-  const isDark = !isSSR && theme === 'dark';
+  const isDark = !isSSR && resolvedTheme === 'dark';
 
   const [globalFilters, setGlobalFilters] = useState<Filter>(defaultFilters);
 
