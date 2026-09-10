@@ -42,7 +42,10 @@ const TopicCell = ({
         className="space-x-1 m-1"
       >
         {topics.sort().map((topic) => (
-          <Label style={{ backgroundColor: 'var(--bgColor-default)' }} key={topic}>
+          <Label
+            style={{ backgroundColor: 'var(--bgColor-default)' }}
+            key={topic}
+          >
             {topic}
           </Label>
         ))}
