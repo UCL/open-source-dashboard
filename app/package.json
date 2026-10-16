@@ -16,10 +16,10 @@
     "autoprefixer": "^10.6.1",
     "file-saver": "^2.0.5",
     "json-2-csv": "^5.6.0",
-    "marked": "^18.1.0",
+    "marked": "^18.1.1",
     "next": "^16.4.0",
     "next-themes": "^0.4.6",
-    "postcss": "^8.5.29",
+    "postcss": "^8.5.30",
     "raw-loader": "^4.0.2",
     "react": "^19.3.0",
     "react-data-grid": "^7.0.0-beta.49",
@@ -33,10 +33,10 @@
   "devDependencies": {
     "@types/file-saver": "^2.0.7",
     "@types/js-cookie": "^3.0.6",
-    "@types/node": "26.6.4",
+    "@types/node": "26.6.5",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
-    "@typescript-eslint/eslint-plugin": "^8.71.1",
+    "@typescript-eslint/eslint-plugin": "^8.71.2",
     "@typescript-eslint/parser": "^8.49.0",
     "eslint": "^10.12.0",
     "eslint-config-next": "^14.2.35",
@@ -48,6 +48,6 @@
     "eslint-plugin-primer-react": "^9.3.1",
     "eslint-plugin-react": "^7.37.5",
     "glob": "^13.0.6",
-    "prettier": "^3.9.9"
+    "prettier": "^3.9.10"
   }
 }
