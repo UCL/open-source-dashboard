@@ -181,6 +181,7 @@ const HeaderCellRenderer = <R = unknown,>({
           <Button
             variant="invisible"
             size="small"
+            style={{ color: 'var(--fgColor-default)' }}
             onClick={(e) => {
               e.stopPropagation();
               setIsPopoverOpen((isOpen) => !isOpen);
@@ -967,11 +968,13 @@ const RepositoriesTable = ({ orgName }: RepositoryTableProps) => {
                 setGlobalFilters(defaultFilters);
               }}
               className={globalFilters !== defaultFilters ? '' : 'opacity-0'}
+              style={{ color: 'var(--fgColor-default)' }}
             >
               Clear All Filters
             </Button>
             <Button
               variant="invisible"
+              style={{ color: 'var(--fgColor-default)' }}
               onClick={() => {
                 saveAs(generateCSV(displayRows), 'output.csv');
               }}
