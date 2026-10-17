@@ -17,7 +17,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
   const orgName = 'Open Source Dashboard';
 
   return (
-    <main className="px-18 py-18 h-full flex flex-col">
+    <main className="h-full flex flex-col">
       <div className="flex flex-row items-center justify-between">
         <div className="flex flex-row items-center gap-6">
           <UclLogo className="block h-8 w-auto" />
