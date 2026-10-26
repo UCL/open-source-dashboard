@@ -86,7 +86,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
-        run: cd "${{ github.workspace }}/app" && ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+        run: npm ci --workspace=app
       - name: Build with Next.js
         run: cd "${{ github.workspace }}/app" && ${{ steps.detect-package-manager.outputs.runner }} next build --webpack
       - name: Upload artifact
