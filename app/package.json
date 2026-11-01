@@ -22,7 +22,7 @@
     "postcss": "^8.5.30",
     "raw-loader": "^4.0.2",
     "react": "^19.3.0",
-    "react-data-grid": "^7.0.0-beta.49",
+    "react-data-grid": "^7.0.0-beta.63",
     "react-dom": "^19.3.0",
     "react-tiny-popover": "^8.1.6",
     "tailwindcss": "^4.3.3",
