@@ -18,7 +18,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@dotenvx/dotenvx": "^2.34.2",
+    "@dotenvx/dotenvx": "^2.38.2",
     "concurrently": "^10.0.6",
     "prettier": "^3.9.10",
     "yaml": "^2.9.1"
